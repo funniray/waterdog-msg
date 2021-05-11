@@ -1,0 +1,66 @@
+package com.funniray.waterdogmsg.commands;
+
+import com.funniray.waterdogmsg.utils.UseQuotes;
+import com.funniray.waterdogmsg.wdmsg;
+import dev.waterdog.ProxyServer;
+import dev.waterdog.command.Command;
+import dev.waterdog.command.CommandSender;
+import dev.waterdog.command.CommandSettings;
+import dev.waterdog.player.ProxiedPlayer;
+
+import java.util.Arrays;
+import java.util.UUID;
+
+public class ReplyCommand extends Command {
+    public ReplyCommand() {
+        super("reply", CommandSettings.builder()
+                .setDescription("Messages a player from the network")
+                .setAliases(new String[]{"r"})
+                //.setPermission("litebans.base")
+                .setUsageMessage("Please use /reply <message>").build());
+    }
+
+    @Override
+    public boolean onExecute(CommandSender commandSender, String s, String[] strings) {
+        if (strings.length >=1) {
+            String message = String.join(" ", strings);
+            UUID senderUUID = UUID.fromString("00000000-0000-0000-0000-000000000000");
+
+            if (commandSender.isPlayer()) {
+                senderUUID = ((ProxiedPlayer) commandSender).getUniqueId();
+            }
+
+            UUID toUUID = wdmsg.messageHistory.get(senderUUID);
+
+            CommandSender to;
+
+            if (toUUID == null) {
+                commandSender.sendMessage(wdmsg.config.getString("reply_null"));
+                return true;
+            } else if (toUUID.equals(UUID.fromString("00000000-0000-0000-0000-000000000000"))) {
+                to = ProxyServer.getInstance().getConsoleSender();
+            } else {
+                to = ProxyServer.getInstance().getPlayer(toUUID);
+            }
+
+
+            if (commandSender.isPlayer()) {
+                senderUUID = ((ProxiedPlayer) commandSender).getUniqueId();
+            }
+
+            if (to == null) {
+                commandSender.sendMessage(wdmsg.config.getString("to_null"));
+                return true;
+            }
+
+            //wdmsg.messageHistory.put(senderUUID,to.getUniqueId()); //This would be redundant
+            wdmsg.messageHistory.put(toUUID,senderUUID);
+
+            to.sendMessage(wdmsg.config.getString("from").replace("%player%", commandSender.getName()).replace("%msg%",message));
+            commandSender.sendMessage(wdmsg.config.getString("to").replace("%player%", to.getName()).replace("%msg%",message));
+
+            return true;
+        }
+        return false;
+    }
+}

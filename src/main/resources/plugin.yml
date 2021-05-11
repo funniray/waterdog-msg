@@ -1,0 +1,4 @@
+name: "Msg-WDPE"
+author: "funniray"
+version: "1.0"
+main: "com.funniray.waterdogmsg.wdmsg"

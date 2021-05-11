@@ -1,0 +1,4 @@
+to: "To %player%: %msg%"
+from: "From %player%: %msg%"
+to_null: "That player doesn't exist or is offline"
+reply_null: "You haven't send any messages"

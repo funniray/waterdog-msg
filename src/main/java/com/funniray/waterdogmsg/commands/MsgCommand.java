@@ -1,0 +1,51 @@
+package com.funniray.waterdogmsg.commands;
+
+import com.funniray.waterdogmsg.utils.UseQuotes;
+import com.funniray.waterdogmsg.wdmsg;
+import dev.waterdog.ProxyServer;
+import dev.waterdog.command.Command;
+import dev.waterdog.command.CommandSender;
+import dev.waterdog.command.CommandSettings;
+import dev.waterdog.player.ProxiedPlayer;
+
+import java.util.Arrays;
+import java.util.UUID;
+
+public class MsgCommand extends Command {
+    public MsgCommand() {
+        super("msg", CommandSettings.builder()
+                .setDescription("Messages a player from the network")
+                .setAliases(new String[]{"w","wisper","message"})
+                //.setPermission("litebans.base")
+                .setUsageMessage("Please use /msg <Player> <message>").build());
+    }
+
+    @Override
+    public boolean onExecute(CommandSender commandSender, String s, String[] strings) {
+        strings = UseQuotes.parseArgs(strings); //Quotes will be yeeted from strings btw
+
+        if (strings.length >=2) {
+            ProxiedPlayer to = ProxyServer.getInstance().getPlayer(strings[0]);
+            String message = String.join(" ", Arrays.copyOfRange(strings, 1, strings.length));
+            UUID senderUUID = UUID.fromString("00000000-0000-0000-0000-000000000000");
+
+            if (commandSender.isPlayer()) {
+                senderUUID = ((ProxiedPlayer) commandSender).getUniqueId();
+            }
+
+            if (to == null) {
+                commandSender.sendMessage(wdmsg.config.getString("to_null"));
+                return true;
+            }
+
+            wdmsg.messageHistory.put(senderUUID,to.getUniqueId());
+            wdmsg.messageHistory.put(to.getUniqueId(),senderUUID);
+
+            to.sendMessage(wdmsg.config.getString("from").replace("%player%", commandSender.getName()).replace("%msg%",message));
+            commandSender.sendMessage(wdmsg.config.getString("to").replace("%player%", to.getName()).replace("%msg%",message));
+
+            return true;
+        }
+        return false;
+    }
+}
