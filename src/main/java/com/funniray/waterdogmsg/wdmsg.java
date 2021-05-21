@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.UUID;
 
@@ -31,6 +32,8 @@ public class wdmsg extends Plugin {
                 e.printStackTrace();
             }
         }
+
+        int test = 1/0;
     }
 
     @Override
