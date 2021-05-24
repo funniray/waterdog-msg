@@ -2,8 +2,8 @@ package com.funniray.waterdogmsg;
 
 import com.funniray.waterdogmsg.commands.MsgCommand;
 import com.funniray.waterdogmsg.commands.ReplyCommand;
-import dev.waterdog.plugin.Plugin;
-import dev.waterdog.utils.Configuration;
+import dev.waterdog.waterdogpe.plugin.Plugin;
+import dev.waterdog.waterdogpe.utils.Configuration;
 
 import java.io.File;
 import java.io.IOException;
@@ -32,8 +32,6 @@ public class wdmsg extends Plugin {
                 e.printStackTrace();
             }
         }
-
-        int test = 1/0;
     }
 
     @Override
