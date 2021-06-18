@@ -1,3 +1,20 @@
+/*
+ *    WD-Msg - A WaterDogPE plugin that allows proxy PMing
+ *    Copyright (C) 2021  Funniray
+ *
+ *    This program is free software; you can redistribute it and/or modify
+ *    it under the terms of the GNU General Public License as published by
+ *    the Free Software Foundation; either version 3 of the License, or
+ *    (at your option) any later version.
+ *
+ *    This program is distributed in the hope that it will be useful,
+ *    but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *    GNU General Public License for more details.
+ *
+ *    I am available for any questions/requests: funniray10@gmail.com
+ */
+
 package com.funniray.waterdogmsg;
 
 import com.funniray.waterdogmsg.commands.MsgCommand;
@@ -39,6 +56,12 @@ public class wdmsg extends Plugin {
         createDefaultConfig();
 
         config = getConfig();
+
+        if (getConfig().getBoolean("showpiracywarning")) {
+            this.getLogger().critical("A WaterDogPE plugin that allows proxy PMing\n" +
+                    "A free plugin by Funniray. https://github.com/funniray/waterdog-pureperms If you paid for this plugin, you were scammed.\n" +
+                    "Report resellers to beingscammed@reallyisnt.fun");
+        }
 
         getProxy().getCommandMap().registerCommand(new MsgCommand());
         getProxy().getCommandMap().registerCommand(new ReplyCommand());
