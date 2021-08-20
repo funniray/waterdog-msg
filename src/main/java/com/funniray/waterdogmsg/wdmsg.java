@@ -20,13 +20,12 @@ package com.funniray.waterdogmsg;
 import com.funniray.waterdogmsg.commands.MsgCommand;
 import com.funniray.waterdogmsg.commands.ReplyCommand;
 import dev.waterdog.waterdogpe.plugin.Plugin;
-import dev.waterdog.waterdogpe.utils.Configuration;
+import dev.waterdog.waterdogpe.utils.config.Configuration;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.UUID;
 
