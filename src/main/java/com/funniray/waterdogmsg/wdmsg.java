@@ -56,12 +56,6 @@ public class wdmsg extends Plugin {
 
         config = getConfig();
 
-        if (getConfig().getBoolean("showpiracywarning")) {
-            this.getLogger().critical("A WaterDogPE plugin that allows proxy PMing\n" +
-                    "A free plugin by Funniray. https://github.com/funniray/waterdog-pureperms If you paid for this plugin, you were scammed.\n" +
-                    "Report resellers to beingscammed@reallyisnt.fun");
-        }
-
         getProxy().getCommandMap().registerCommand(new MsgCommand());
         getProxy().getCommandMap().registerCommand(new ReplyCommand());
     }

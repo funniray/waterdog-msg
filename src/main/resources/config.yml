@@ -15,19 +15,6 @@
 #  I am available for any questions/requests: funniray10@gmail.com
 #
 
-###############################################################################################################
-###############################################################################################################
-####                                                                                                       ####
-####                               IF YOU PAID FOR THIS, YOU WERE SCAMMED                                  ####
-####                                     THIS IS A FREE PLUGIN                                             ####
-####                           https://github.com/funniray/waterdog-msg                                    ####
-####                           Report scammers to beingscammed@reallyisnt.fun                              ####
-####                                                                                                       ####
-###############################################################################################################
-###############################################################################################################
-showpiracywarning: true
-
-
 to: "To %player%: %msg%"
 from: "From %player%: %msg%"
 to_null: "That player doesn't exist or is offline"
